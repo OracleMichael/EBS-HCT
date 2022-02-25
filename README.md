@@ -10,11 +10,11 @@ This is one of three data pieces needed to generate the final report. You may fi
 
 You must run the BDE Check on an APP node. This will generate an html file that will be used to create the final report.
 
-### Prerequisites
+### Prerequisites - BDE Check
 
 1. Download the script from [this link](https://support.oracle.com/epmos/main/downloadattachmentprocessor?parent=DOCUMENT&sourceId=174605.1&attachid=174605.1:SCRIPT_12108&clickstream=yes).
 
-### Steps to Run
+### Steps to Run BDE Check
 
 1. Upload the script to an APP node. The script should be called `bde_chk_cbo_1208.sql`.
 2. On that node, run the EBS environment file for that server with the "run" option. Generally this environment file is found at `/u01/install/APPS/EBSapps.env` but your environment may vary.
@@ -37,11 +37,11 @@ This is one of three data pieces needed to generate the final report. You may fi
 
 You must run the ORA Check or EXA Check on a DB node. You should run it across all the DB nodes at once instead of individually since the report generation step only accepts one ORA/EXA report. This will generate a directory of multiple files - you will need `upload/#######_orachk_results.json` and `upload/orachk_recommendations.json` to create the final report.
 
-### Prerequisites
+### Prerequisites - ORA/EXA Check
 
 1. Download the AHF installer at [this link](https://support.oracle.com/epmos/faces/DocContentDisplay?_afrLoop=491251169771167&id=2550798.1&_afrWindowMode=0&_adf.ctrl-state=4llm0bpyc_102).
 
-### Steps to Run
+### Steps to Run ORA/EXA Check
 
 1. Upload the installation zip to a DB node. This file is about 300MB so it should take some time. Then, unzip the file on that machine.
 2. Install AHF on that machine by following the instructions in the unzipped README.txt.
@@ -152,7 +152,7 @@ Please ensure you have the following information from your EBS deployment:
     python3 --version
     ```
     To install Python, please follow these instructions:
-    - Access the above link and download the latest Python 3 installer for Windows.
+    - Access the above link and download the latest Python 3 installer for Windows (yellow download button).
     - In the installation wizard, there will be an option to add the installation directory to Path - make sure this box is checked. Select the default installation.
     - Once Python has been fully installed, check your Path environment variable. You can do this by searching "environment variables" in Cortana or in Control Panel. This opens a properties window with an "Edit Environment Variables" button. Click this, then select the "Path" user environment variable and click the top edit button. If the installation was successful, you should see a string like `%USERPROFILE%\AppData\Local\Programs\Python\Python39` where the last folder is the Python version (this one is 3.9). **If you do not see any strings resembling the location of where you just installed Python, please locate this directory (it will contain "python.exe") and add a new environment variable with this directory.**
     - Finally, you will need to modify your Git Bash by adding an alias. Open a Git Bash terminal or use an existing one and run:
@@ -188,7 +188,7 @@ Please ensure you have the following information from your EBS deployment:
     pip3 install -r requirements.txt
     ```
 
-### How To Run This
+### Steps to Run Manual Check
 
 1. Generate the config file.
     - Prior to running the program, there are two prompts that you may skip for the current version of this script: `Would you like us to check if the source file exists(y/n)` and `Would you like to set up your OCI config? (y/n)` (just enter `n` for both of these). The first prompt will SSH into your configured VM to check if the environment file is there, which may take a long time and/or result in the program crashing. The second prompt will require you to enter a valid file prior to continuing.
@@ -207,7 +207,7 @@ Please ensure you have the following information from your EBS deployment:
 
 ## Report Generation
 
-### Prerequisites
+### Prerequisites - Report
 
 1. This program has been tested on Python 3.6.0 and Python 3.8.6. Performance on other versions may vary. Please ensure that your system is configured appropriately. 
 2. This program uses pip3 to manage packages. Please ensure that it is installed and up-to-date.
@@ -247,7 +247,7 @@ ebs-healthcheck-report/
     [other files]
 ```
 
-### How To Use This
+### How To Generate the Report
 
 1. Generate the config file.
     - Navigate to the `scripts` directory. You should see a `report_config.py` and `generate_report.py` file there.
